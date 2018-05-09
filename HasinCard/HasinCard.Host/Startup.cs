@@ -24,6 +24,12 @@ namespace HasinCard.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // configure identity server with in-memory stores, keys, clients and resources
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
