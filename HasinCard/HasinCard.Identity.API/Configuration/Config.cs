@@ -21,7 +21,7 @@ namespace HasinCard.Identity.API.Configuration
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Profile()
             };
         }
 
@@ -47,48 +47,14 @@ namespace HasinCard.Identity.API.Configuration
             return listTestUsers;
         }
 
-        public static IEnumerable<Client> GetClients()
+        /// <summary>
+        /// 获取客户端
+        /// </summary>
+        /// <returns></returns>
+        public  IEnumerable<Client> GetClients()
         {
             return new List<Client>
             {
-                // other clients omitted...
-                 new Client
-                {
-                    ClientId = "client",
-
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    // scopes that client has access to
-                    AllowedScopes = { "api1" }
-                },
-                // resource owner password grant client
-                new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-
-                    // where to redirect to after login
-                    RedirectUris = { "http://localhost:7762/signin-oidc" },
-
-                    // where to redirect to after logout
-                    PostLogoutRedirectUris = { "http://localhost:7762/signout-callback-oidc" },
-
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
-                        //MVC访问自身，不需要Resourd
-                    }
-                 },
-
                 // JavaScript Client
                 new Client
                 {
@@ -115,7 +81,7 @@ namespace HasinCard.Identity.API.Configuration
         /// 定义API资源
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<ApiResource> GetApiResources()
+        public  IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
             {

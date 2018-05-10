@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HasinCard.Data;
 using HasinCard.Identity.API.Configuration;
+using HasinCard.Service.SysUser;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,14 +26,21 @@ namespace HasinCard.Identity.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<HasinCardDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default")));
+            services.AddScoped<ISysUserService, SysUserService>();
+
+            // Build an intermediate service provider
+            var sp = services.BuildServiceProvider();
+            var sysUserService = sp.GetService<ISysUserService>();
+            Config config = new Config(sysUserService);
 
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
+                .AddInMemoryIdentityResources(config.GetIdentityResources())
+                .AddInMemoryApiResources(config.GetApiResources())
+                .AddInMemoryClients(config.GetClients())
+                .AddTestUsers(config.GetUsers());
 
             services.AddCors(options =>
             {
