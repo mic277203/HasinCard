@@ -55,6 +55,23 @@ namespace HasinCard.Identity.API.Configuration
         {
             return new List<Client>
             {
+                // app client
+                 new Client
+                {
+                    ClientId = "app",
+                    
+                    // no interactive user, use the clientid/secret for authentication
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    // secret for authentication
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
+                    // scopes that client has access to
+                    AllowedScopes = { "apihost" }
+                },
                 // JavaScript Client
                 new Client
                 {
@@ -63,15 +80,15 @@ namespace HasinCard.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris =           { "http://localhost:8957/callback.aspx" },
-                    PostLogoutRedirectUris = { "http://localhost:8957/index.aspx" },
-                    AllowedCorsOrigins =     { "http://localhost:8957" },
+                    RedirectUris =           { "http://localhost:7762/SignCallBack" },
+                    PostLogoutRedirectUris = { "http://localhost:7762/Home" },
+                    AllowedCorsOrigins =     { "http://localhost:7762" },
 
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "apiHost"
+                        "apihost"
                     }
                 }
              };
@@ -85,7 +102,7 @@ namespace HasinCard.Identity.API.Configuration
         {
             return new List<ApiResource>
             {
-                new ApiResource("apiHost", "My Host API")
+                new ApiResource("apihost", "My Host API")
             };
         }
     }

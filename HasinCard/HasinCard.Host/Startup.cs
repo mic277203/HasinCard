@@ -28,18 +28,18 @@ namespace HasinCard.Host
             services.AddAuthentication("Bearer")
              .AddIdentityServerAuthentication(options =>
              {
-                 options.Authority = "http://localhost:5566";
+                 options.Authority = "http://localhost:5000";
                  options.RequireHttpsMetadata = false;
 
-                 options.ApiName = "api1";
+                 options.ApiName = "apihost";
              });
 
             services.AddCors(options =>
             {
-                // this defines a CORS policy called "default"
-                options.AddPolicy("default", policy =>
+                //允许任何站点跨域
+                options.AddPolicy("any", policy =>
                 {
-                    policy.WithOrigins("http://localhost:8957")
+                    policy.AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
@@ -54,7 +54,7 @@ namespace HasinCard.Host
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("default");
+            app.UseCors("any");
             app.UseAuthentication();
 
             app.UseMvc();

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "CallBack";
+    Layout = null;
+}
+<script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
+<script type="text/javascript">
+    new Oidc.UserManager().signinRedirectCallback().then(function () {
+        window.location = '@Url.Action("index","Home")';
+    }).catch(function (e) {
+        console.error(e);
+    });
+</script>
+

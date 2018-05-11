@@ -9,11 +9,88 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\js\node_modules\jsrsasign\package.json" />
+    <Content Include="wwwroot\js\node_modules\oidc-client\bower.json" />
+    <Content Include="wwwroot\js\node_modules\oidc-client\jsconfig.json" />
+    <Content Include="wwwroot\js\node_modules\oidc-client\package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\node_modules\jsrsasign\lib\footer.js" />
+    <None Include="wwwroot\js\node_modules\jsrsasign\lib\header.js" />
+    <None Include="wwwroot\js\node_modules\jsrsasign\lib\jsrsasign.js" />
+    <None Include="wwwroot\js\node_modules\jsrsasign\lib\lib.js" />
+    <None Include="wwwroot\js\node_modules\jsrsasign\Makefile" />
+    <None Include="wwwroot\js\node_modules\jsrsasign\README.md" />
+    <None Include="wwwroot\js\node_modules\oidc-client\.gitattributes" />
+    <None Include="wwwroot\js\node_modules\oidc-client\.npmignore" />
+    <None Include="wwwroot\js\node_modules\oidc-client\dist\oidc-client.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\dist\oidc-client.min.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\GitReleaseManager.yaml" />
+    <None Include="wwwroot\js\node_modules\oidc-client\gulpfile.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\index.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\lib\oidc-client.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\lib\oidc-client.min.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\LICENSE" />
+    <None Include="wwwroot\js\node_modules\oidc-client\README.md" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\AccessTokenEvents.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\CheckSessionIFrame.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\CordovaIFrameNavigator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\CordovaPopupNavigator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\CordovaPopupWindow.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\ErrorResponse.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\Event.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\Global.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\IFrameNavigator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\IFrameWindow.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\InMemoryWebStorage.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\JoseUtil.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\JsonService.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\Log.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\MetadataService.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\OidcClient.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\OidcClientSettings.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\PopupNavigator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\PopupWindow.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\random.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\RedirectNavigator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\ResponseValidator.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SessionMonitor.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SigninRequest.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SigninResponse.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SigninState.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SignoutRequest.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SignoutResponse.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\SilentRenewService.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\State.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\Timer.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\TokenRevocationClient.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\UrlUtility.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\User.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\UserInfoService.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\UserManager.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\UserManagerEvents.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\UserManagerSettings.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\src\WebStorageStateStore.js" />
+    <None Include="wwwroot\js\node_modules\oidc-client\webpack.base.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\js\node_modules\oidc-client\index.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Manage\Data\" />
+    <Folder Include="Areas\Manage\Models\" />
   </ItemGroup>
 
 </Project>
