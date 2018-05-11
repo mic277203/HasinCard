@@ -28,7 +28,7 @@ namespace HasinCard.Host
             services.AddAuthentication("Bearer")
              .AddIdentityServerAuthentication(options =>
              {
-                 options.Authority = "http://localhost:5680";
+                 options.Authority = "http://localhost:5566";
                  options.RequireHttpsMetadata = false;
 
                  options.ApiName = "api1";

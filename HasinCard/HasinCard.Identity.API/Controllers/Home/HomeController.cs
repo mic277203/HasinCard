@@ -25,13 +25,7 @@ namespace HasinCard.Identity.API
 
         public IActionResult Index()
         {
-            if (_environment.IsDevelopment())
-            {
-                // only show in development
-                return View();
-            }
-
-            return NotFound();
+            return View();
         }
 
         /// <summary>
