@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using HasinCard.Data;
+using HasinCard.Service.SysUser;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,11 +28,14 @@ namespace HasinCard.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAutoMapper();
+            services.AddDbContext<HasinCardDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default")));
+            services.AddScoped<ISysUserService, SysUserService>();
 
             services.AddAuthentication("Bearer")
              .AddIdentityServerAuthentication(options =>
              {
-                 options.Authority = "http://localhost:5000";
+                 options.Authority = "http://www.hasin.top";
                  options.RequireHttpsMetadata = false;
 
                  options.ApiName = "apihost";

@@ -42,7 +42,9 @@ namespace HasinCard.MVC
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("areaRoute", "{area:Manage}/{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "area",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

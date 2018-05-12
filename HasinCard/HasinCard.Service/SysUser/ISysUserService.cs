@@ -13,5 +13,12 @@ namespace HasinCard.Service.SysUser
         /// </summary>
         /// <returns></returns>
         List<SysUsers> GetList();
+
+        /// <summary>
+        /// 根据ID获取用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        SysUsersResponseDto GetById(int id);
     }
 }

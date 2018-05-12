@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HasinCard.MVC.Areas.Manage.Controllers
 {
+    [Area("Manage")]
     public class HomeController : Controller
     {
         // GET: /<controller>/
