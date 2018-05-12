@@ -7,6 +7,7 @@ using HasinCard.Core.Linq;
 using System.Threading.Tasks;
 using HasinCard.Core.Domain;
 using AutoMapper;
+using HasinCard.Core.Utility;
 
 namespace HasinCard.Service.SysUser
 {
@@ -38,5 +39,26 @@ namespace HasinCard.Service.SysUser
 
             return model;
         }
+
+        public async Task<bool> CreateAsync(SysUsersRequestDto dto)
+        {
+            var model = _mapper.Map<SysUsers>(dto);
+            model.CreationTime = DateTime.Now;
+            model.Password = EncryptionMd5Helper.EncryptStringMD5(model.Password);
+
+            var task = await _context.SysUsers.AddAsync(model);
+            await _context.SaveChangesAsync();
+
+            if (model.Id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
     }
 }

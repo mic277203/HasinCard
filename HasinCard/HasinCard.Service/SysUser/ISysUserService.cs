@@ -20,5 +20,7 @@ namespace HasinCard.Service.SysUser
         /// <param name="id"></param>
         /// <returns></returns>
         SysUsersResponseDto GetById(int id);
+
+        Task<bool> CreateAsync(SysUsersRequestDto dto);
     }
 }

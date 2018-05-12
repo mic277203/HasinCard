@@ -7,5 +7,6 @@ namespace HasinCard.Core
    public class HasinCardConsts
     {
         public const string ConnectionStringName = "Default";
+        public const string EncryptKey = "hasin";
     }
 }

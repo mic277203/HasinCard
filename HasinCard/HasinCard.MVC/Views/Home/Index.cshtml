@@ -1,65 +1,133 @@
 ﻿@{
     ViewData["Title"] = "HaSin";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<nav class="navbar navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                HaSin自动发卡平台
-            </a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="liBackground"><a href="@Url.Action("Index","Home",new { area="Manage"})" class="aBackground">进入后台</a></li>
-            <li class="liLogout"><a href="#" class="alogout">退出</a></li>
-            <li class="liLogin"><a href="#" class="alogin">登录</a></li>
-            <li class="liRegister"><a href="#">注册</a></li>
-        </ul>
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="jumbotron">
+<div class="slider">
+    <!-- Slideshow -->
+    <ul class="rslides rslides1" id="slider3">
+        <li id="rslides1_s0" class="" style="display: block; transition: opacity 500ms ease-in-out; float: none; position: absolute; opacity: 0; z-index: 1;">
+            <img src="~/images/slider-img2.jpg" alt="">
+            <div class="slid-info">
+                <h1>全新发卡体验1</h1>
+                <p>全响应式界面，简约易操作，一站式寄售卡，为你稳定服务。<br>商品管理、订单记录、收益统计、渠道分析...</p>
+                <a class="slid-btn" href="#">立即体验</a>
+            </div>
+        </li>
+        <li id="rslides1_s1" class="" style="display: list-item; transition: opacity 500ms ease-in-out; float: none; position: absolute; opacity: 0; z-index: 1;">
+            <img src="~/images/slider-img1.jpg" alt="">
+            <div class="slid-info">
+                <h1>全新发卡体验2</h1>
+                <p>全响应式界面，简约易操作，一站式寄售卡，为你稳定服务。<br>商品管理、订单记录、收益统计、渠道分析...</p>
+                <a class="slid-btn" href="#">立即体验</a>
+            </div>
+        </li>
+        <li id="rslides1_s2" class="rslides1_on" style="display: list-item; transition: opacity 500ms ease-in-out; float: left; position: relative; opacity: 1; z-index: 2;">
+            <img src="~/images/slider-img2.jpg" alt="">
+            <div class="slid-info">
+                <h1>全新发卡体验3</h1>
+                <p>全响应式界面，简约易操作，一站式寄售卡，为你稳定服务。<br>商品管理、订单记录、收益统计、渠道分析...</p>
+                <a class="slid-btn" href="#">立即体验</a>
+            </div>
+        </li>
+    </ul>
+    <ul id="slider3-pager" class="rslides_tabs rslides1_tabs">
+        <li class="rslides1_s1"><a><span> </span></a></li>
+        <li class="rslides1_s2"><a><span> </span></a></li>
+        <li class="rslides1_s3 rslides_here"><a><span> </span></a></li>
+    </ul>
+</div>
+<div id="about" class="about">
     <div class="container">
-        <h2>最专业的自动发卡平台</h2>
-        <p style="padding-top:50px;">致力于解决虚拟商品的快捷寄售服务，为商户及其买家提供，便捷、绿色、安全、快速的销售和购买体验。</p>
-        <p><a class="btn btn-primary btn-lg aregister" href="#" role="button">商家注册</a></p>
+        <h2>我们的优势</h2>
+        <p class="wellcome-note-head">专业技术服务团队7*24小时贴心服务</p>
+        <p class="wellcome-note-info">为商户及其买家提供，便捷、绿色、安全、快速的销售和购买体验</p>
+        <div class="about-grids">
+            <div class="col-md-3 about-grid">
+                <span class="about-icon"> </span>
+                <h3><a>服务器安全</a></h3>
+                <p>采用群集服务器，防御高，故障率低，无论用户身在何处，均能获得流畅安全可靠的体验</p>
+            </div>
+            <div class="col-md-3 about-grid">
+                <span class="about-icon1"> </span>
+                <h3><a>界面简约</a></h3>
+                <p>简约的UI交互体验可以给您一个体验度极高的商户后台，更好的下单体验</p>
+            </div>
+            <div class="col-md-3 about-grid">
+                <span class="about-icon2"> </span>
+                <h3><a>费率超低</a></h3>
+                <p>支付渠道直接对接官方，直接去掉中间商的差价，因此我们可以给商户提供更低廉的费率</p>
+            </div>
+            <div class="col-md-3 about-grid">
+                <span class="about-icon3"> </span>
+                <h3><a>资金保障</a></h3>
+                <p>商户的资金，次日即可结算，资金平均停留的时间不超过12小时，您的资金安全将得到充分的保障</p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     </div>
 </div>
+<div id="services" class="services">
+    <div class="container">
+        <h3>解决方案</h3>
+        <div class="services-list text-center">
+            <ul class="list-unstyled list-inline">
+                <li>
+                    <a><span class="service-icon"> </span><label>点卡充值</label></a>
+                </li>
+                <li>
+                    <a><span class="service-icon1"> </span><label>尊贵会员</label></a>
+                </li>
+                <li>
+                    <a><span class="service-icon2"> </span><label>行业软件</label></a>
+                </li>
+                <li>
+                    <a><span class="service-icon3"> </span><label>网盘分享</label></a>
+                </li>
+                <li>
+                    <a><span class="service-icon4"> </span><label>程序源码</label></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="team" class="team">
+    <div class="container">
+        <div class="team-members text-center">
+            <div class="col-md-4 team-member">
+                <a class="member-pic" href="#"><img src="~/images/t1.jpg" title="member-name"></a>
+                <h3><a>诚 信</a></h3>
+                <p>诚信永远是我们的经营之本，我们诚信、尊重、 爱护平台的每一位商户以及买家</p>
+            </div>
+            <div class="col-md-4 team-member">
+                <a class="member-pic" href="#"><img src="~/images/t2.jpg" title="member-name"></a>
+                <h3><a>公 道</a></h3>
+                <p>平台所有的支付渠道,均有我们平台自主申请对接 ,杜绝高费率第三方支付</p>
+            </div>
+            <div class="col-md-4 team-member">
+                <a class="member-pic" href="#"><img src="~/images/t3.jpg" title="member-name"></a>
+                <h3><a>风 控</a></h3>
+                <p>平台每个商户都经过我们的风控组筛选，商户信誉有保障</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand-carsuals">
+    <div class="nbs-flexisel-container">
+        <div class="nbs-flexisel-inner">
+            <ul id="flexiselDemo3" class="nbs-flexisel-ul" style="display:block; left: -292.5px;">
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf3.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf5.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf1.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf2.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf3.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf5.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf1.png"></li>
+                <li class="nbs-flexisel-item" style="width: 292.5px;"><img src="~/images/zf2.png"></li>
+            </ul><div class="nbs-flexisel-nav-left" style="top: -11px;"></div><div class="nbs-flexisel-nav-right" style="top: -11px;"></div>
+        </div>
+    </div>
+</div>
+
 @section Scripts{
-    <script type="text/javascript">
-
-        $(function () {
-
-            mgr.getUser().then(function (user) {
-                if (user) {
-                    $(".liLogin").hide();
-                    $(".liRegister").hide();
-                }
-                else {
-                    $(".liBackground").hide();
-                    $(".liLogout").hide();
-                }
-            });
-
-            $(".alogin").on("click", function () {
-                mgr.signinRedirect();
-            });
-
-            $(".alogout").on("click", function () {
-                mgr.signoutRedirect();
-            });
-
-            $(".aregister").on("click", function () {
-              
-            });
-        });
-
-    </script>
 }

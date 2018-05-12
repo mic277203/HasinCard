@@ -19,7 +19,7 @@ namespace HasinCard.Data.Migrations
                     Email = table.Column<string>(maxLength: 50, nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 20, nullable: true),
-                    Password = table.Column<string>(maxLength: 20, nullable: false),
+                    Password = table.Column<string>(maxLength: 50, nullable: false),
                     QQ = table.Column<string>(maxLength: 15, nullable: true),
                     TelNo = table.Column<string>(maxLength: 15, nullable: true)
                 },

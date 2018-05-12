@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HasinCard.Core.Validator.SysUser;
 using HasinCard.Data;
 using HasinCard.Service.SysUser;
 using Microsoft.AspNetCore.Builder;

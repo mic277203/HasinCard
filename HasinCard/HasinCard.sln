@@ -19,9 +19,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{464FD0D6-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HasinCard.Core.Test", "HasinCard.Core.Test\HasinCard.Core.Test.csproj", "{32BDE937-5054-4482-93E5-B8FD954FBA04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HasinCard.Identity.API", "HasinCard.Identity.API\HasinCard.Identity.API.csproj", "{5C0DD033-094F-4853-86F9-C3620416A3F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HasinCard.Identity.API", "HasinCard.Identity.API\HasinCard.Identity.API.csproj", "{5C0DD033-094F-4853-86F9-C3620416A3F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HasinCard.MVC", "HasinCard.MVC\HasinCard.MVC.csproj", "{75E6C81F-D549-4690-BC17-9212B79F1993}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HasinCard.MVC", "HasinCard.MVC\HasinCard.MVC.csproj", "{75E6C81F-D549-4690-BC17-9212B79F1993}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI", "..\..\UI\", "{4B3EC381-978E-4023-9D35-2B9888561CE5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56657"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56657\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56657"
+		Release.AspNetCompiler.PhysicalPath = "..\..\UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56657\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56657"
+		SlnRelativePath = "..\..\UI\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HasinCard.Service.Test", "HasinCard.Service.Test\HasinCard.Service.Test.csproj", "{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HasinCard.Host.Test", "HasinCard.Host.Test\HasinCard.Host.Test.csproj", "{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +82,18 @@ Global
 		{75E6C81F-D549-4690-BC17-9212B79F1993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75E6C81F-D549-4690-BC17-9212B79F1993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75E6C81F-D549-4690-BC17-9212B79F1993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B3EC381-978E-4023-9D35-2B9888561CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B3EC381-978E-4023-9D35-2B9888561CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B3EC381-978E-4023-9D35-2B9888561CE5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B3EC381-978E-4023-9D35-2B9888561CE5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +106,9 @@ Global
 		{32BDE937-5054-4482-93E5-B8FD954FBA04} = {464FD0D6-9A81-4D42-9F8C-CBC6ED350AB1}
 		{5C0DD033-094F-4853-86F9-C3620416A3F3} = {0010D11C-74D1-42B0-AE80-0211D43B05D7}
 		{75E6C81F-D549-4690-BC17-9212B79F1993} = {0010D11C-74D1-42B0-AE80-0211D43B05D7}
+		{4B3EC381-978E-4023-9D35-2B9888561CE5} = {0010D11C-74D1-42B0-AE80-0211D43B05D7}
+		{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945} = {464FD0D6-9A81-4D42-9F8C-CBC6ED350AB1}
+		{C9CBE90A-DE2A-4501-8FD3-8DE35656F1CE} = {464FD0D6-9A81-4D42-9F8C-CBC6ED350AB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1069D31-C02B-4868-B3FA-FEECF18A5720}

@@ -22,7 +22,7 @@ namespace HasinCard.Core.Domain
         /// <summary>
         /// 密码
         /// </summary>
-        [MaxLength(20)]
+        [MaxLength(50)]
         [Required]
         public string Password { get; set; }
 
