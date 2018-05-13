@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HasinCard.Core.AuoMapper;
 using HasinCard.Core.Domain;
 using HasinCard.Data;
 using HasinCard.Service.SysUser;
@@ -19,7 +20,7 @@ namespace HasinCard.Service.Test
         public SysUserServiceTest()
         {
             var services = new ServiceCollection();
-            services.AddDbContext<HasinCardDbContext>(options => options.UseMySql("Server=39.108.3.178;user=root;password=root;Database=hasincard"));
+            services.AddDbContext<HasinCardDbContext>(options => options.UseMySql("Server=149.28.31.100;user=root;password=root;Database=hasincard"));
             services.AddScoped<ISysUserService, SysUserService>();
             services.AddAutoMapper();
 

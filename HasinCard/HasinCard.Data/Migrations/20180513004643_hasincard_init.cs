@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HasinCard.Data.Migrations
 {
-    public partial class HasinCard_Initial : Migration
+    public partial class hasincard_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

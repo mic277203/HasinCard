@@ -40,6 +40,11 @@ namespace HasinCard.Service.SysUser
             return model;
         }
 
+        public bool ExistEmail(string email)
+        {
+            return _context.SysUsers.Any(p => p.Email.ToLower() == email.ToLower());
+        }
+
         public async Task<bool> CreateAsync(SysUsersRequestDto dto)
         {
             var model = _mapper.Map<SysUsers>(dto);

@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using HasinCard.Core.AuoMapper;
 
 namespace HasinCard.Identity.API
 {
@@ -27,6 +29,7 @@ namespace HasinCard.Identity.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddDbContext<HasinCardDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default")));
             services.AddScoped<ISysUserService, SysUserService>();
 

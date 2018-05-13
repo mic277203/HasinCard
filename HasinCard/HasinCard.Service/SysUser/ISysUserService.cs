@@ -22,5 +22,12 @@ namespace HasinCard.Service.SysUser
         SysUsersResponseDto GetById(int id);
 
         Task<bool> CreateAsync(SysUsersRequestDto dto);
+
+        /// <summary>
+        /// 已存在邮箱
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        bool ExistEmail(string email);
     }
 }

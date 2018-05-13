@@ -1858,7 +1858,7 @@ p.m_5 {
 	outline-color:#3195fa;
 	margin-right:40px;
 }
-.register button{
+.register .btnRegister{
 	display:block;
 	font-size:16px;
 	height:48px;

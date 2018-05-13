@@ -11,8 +11,8 @@ using System;
 namespace HasinCard.Data.Migrations
 {
     [DbContext(typeof(HasinCardDbContext))]
-    [Migration("20180509081340_HasinCard_Initial")]
-    partial class HasinCard_Initial
+    [Migration("20180513004643_hasincard_init")]
+    partial class hasincard_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace HasinCard.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(50);
 
                     b.Property<string>("QQ")
                         .HasMaxLength(15);

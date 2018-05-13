@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HasinCard.Core.AuoMapper;
 using HasinCard.Core.Validator.SysUser;
 using HasinCard.Data;
 using HasinCard.Service.SysUser;
@@ -29,14 +30,14 @@ namespace HasinCard.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddDbContext<HasinCardDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default")));
             services.AddScoped<ISysUserService, SysUserService>();
 
             services.AddAuthentication("Bearer")
              .AddIdentityServerAuthentication(options =>
              {
-                 options.Authority = "http://www.hasin.top";
+                 options.Authority = "http://localhost:5680";
                  options.RequireHttpsMetadata = false;
 
                  options.ApiName = "apihost";

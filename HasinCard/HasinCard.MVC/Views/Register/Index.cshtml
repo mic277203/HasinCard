@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
@@ -8,18 +7,51 @@
 <div class="main_box">
     <div class="register">
         <h1>注册会员</h1>
-        <form action="#" method="post">
-            <p><input name="reginfo[username]" type="text" placeholder="用户名" id="newusername" required=""> 用户名在5-30位</p>
-            <p><input name="reginfo[password]" type="password" placeholder="密码" id="password1" required=""> 密码长度在6到20个字符之间</p>
-            <p><input name="reginfo[confirmpassword]" type="password" placeholder="确认密码" id="password2" required=""> 确认密码</p>
-            <p><input name="reginfo[qq]" type="text" id="newqq" placeholder="QQ" required=""> 请填写你的常用QQ号</p>
-            <p><input name="reginfo[email]" id="newemail" type="text" placeholder="密保邮箱" required=""> 用于找回密码</p>
-            <p><input type="text" placeholder="请输入您的手机号码" maxlength="11" name="reginfo[phone]" id="newmobile" class="user" required=""></p>
-            <p><button>注 册</button></p>
+        <form id="form1" method="post">
+            <p><input name="Email" type="text" placeholder="登录邮箱" required=""> 用于登录</p>
+            <p><input name="Password" type="password" placeholder="密码" required=""> 密码长度在6到20个字符之间</p>
+            <p><input name="PasswordComfire" type="password" placeholder="确认密码" id="password2" required=""> 确认密码</p>
+            <p><input name="Name" type="text" placeholder="昵称" required=""> 用户名在5-30位</p>
+            <p><input name="QQ" type="text" placeholder="QQ" required=""> 请填写你的常用QQ号</p>
+            <p><input type="text" maxlength="11" name="TelNo" class="user" placeholder="请输入您的手机号码" required=""></p>
+            <p><input type="button" class="btnRegister" value="注 册" /></p>
         </form>
         <p>已有账号，<a href="#" style="color: #3195fa">登录</a></p>
     </div>
     <img src="~/images/reg_img.png" alt="" style="float: right;margin-top: 20px">
     <div class="clear"></div>
 </div>
+@section Scripts{
+    <script type="text/javascript">
 
+        function Register() {
+            var data =
+                {
+                    Email: $('input[name="Email"]').val(),
+                    Password: $('input[name="Password"]').val(),
+                    Name: $('input[name="Name"]').val(),
+                    QQ: $('input[name="QQ"]').val(),
+                    TelNo: $('input[name="TelNo"]').val(),
+                }
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType:"json",
+                url: "http://localhost:11415/api/SysUser",
+                data: JSON.stringify(data),
+                success: function (result) {
+                    alert(result.message);
+                }
+            });
+        }
+
+        $(function () {
+
+            $(".btnRegister").click(function () {
+                Register();
+            });
+        });
+
+    </script>
+}

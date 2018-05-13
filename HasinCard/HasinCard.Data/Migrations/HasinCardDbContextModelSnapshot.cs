@@ -37,7 +37,7 @@ namespace HasinCard.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(50);
 
                     b.Property<string>("QQ")
                         .HasMaxLength(15);

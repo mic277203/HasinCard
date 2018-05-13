@@ -41,7 +41,8 @@ namespace HasinCard.Host.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(SysUsersRequestDto dto)
+        [AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody]SysUsersRequestDto dto)
         {
             if (dto == null)
             {
@@ -54,6 +55,11 @@ namespace HasinCard.Host.Controllers
             {
                 string errorMsg = string.Join('\n', validResult.Errors.AsQueryable().Select(p => p.ErrorMessage).ToArray());
                 return Json(ApiJsonResult.ErrorResult(errorMsg));
+            }
+
+            if (_sysUserService.ExistEmail(dto.Email))
+            {
+                return Json(ApiJsonResult.ErrorResult("邮箱已注册"));
             }
 
             var result = await _sysUserService.CreateAsync(dto);

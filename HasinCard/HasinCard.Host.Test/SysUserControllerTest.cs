@@ -102,7 +102,7 @@ namespace HasinCard.Host.Test
         {
             for (int i = 0; i < listDtos.Count; i++)
             {
-                var result = await _target.Create(listDtos[i]);
+                var result = await _target.Post(listDtos[i]);
                 var message = Newtonsoft.Json.JsonConvert.SerializeObject(result);
 
                 output.WriteLine(message);
