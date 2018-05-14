@@ -12,4 +12,9 @@
     <ProjectReference Include="..\HasinCard.Data\HasinCard.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Product\" />
+    <Folder Include="Card\" />
+  </ItemGroup>
+
 </Project>

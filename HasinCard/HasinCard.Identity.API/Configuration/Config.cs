@@ -35,8 +35,8 @@ namespace HasinCard.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { "http://149.28.31.100:801/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { "http://149.28.31.100:801/swagger/" },
+                    RedirectUris = { "http://localhost:11415/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { "http://localhost:11415/swagger/" },
 
                     AllowedScopes =
                     {
@@ -68,9 +68,9 @@ namespace HasinCard.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris =           { "http://149.28.31.100:802/SignCallBack" },
-                    PostLogoutRedirectUris = { "http://149.28.31.100:802/Home" },
-                    AllowedCorsOrigins =     { "http://149.28.31.100:802" },
+                    RedirectUris =           { "http://localhost:7762/SignCallBack" },
+                    PostLogoutRedirectUris = { "http://localhost:7762/Home" },
+                    AllowedCorsOrigins =     { "http://localhost:7762" },
 
                     AllowedScopes =
                     {

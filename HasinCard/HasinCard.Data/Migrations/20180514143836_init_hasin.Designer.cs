@@ -11,9 +11,10 @@ using System;
 namespace HasinCard.Data.Migrations
 {
     [DbContext(typeof(HasinCardDbContext))]
-    partial class HasinCardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180514143836_init_hasin")]
+    partial class init_hasin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

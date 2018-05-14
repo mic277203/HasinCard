@@ -39,7 +39,7 @@ namespace HasinCard.Host
             services.AddAuthentication("Bearer")
             .AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "http://149.28.31.100:800";
+                options.Authority = "http://localhost:5680";
                 options.RequireHttpsMetadata = false;
                 options.ApiName = "apihost";
             });
@@ -53,8 +53,8 @@ namespace HasinCard.Host
                 {
                     Type = "oauth2",
                     Flow = "implicit",
-                    AuthorizationUrl = "http://149.28.31.100:800/connect/authorize",
-                    TokenUrl = "http://149.28.31.100:800/connect/token",
+                    AuthorizationUrl = "http://localhost:5680/connect/authorize",
+                    TokenUrl = "http://localhost:5680/connect/token",
                     Scopes = new Dictionary<string, string>()
                     {
                         { "apihost", "hasin api" }

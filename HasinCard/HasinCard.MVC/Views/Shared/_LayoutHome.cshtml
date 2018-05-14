@@ -109,12 +109,12 @@
     <script type="text/javascript">
 
         var config = {
-            authority: "http://149.28.31.100:800",
+            authority: "http://localhost:5680",
             client_id: "js",
-            redirect_uri: 'http://149.28.31.100:802/SignCallBack',
+            redirect_uri: 'http://localhost:7762/SignCallBack',
             response_type: "id_token token",
             scope: "openid profile apihost",
-            post_logout_redirect_uri: 'http://149.28.31.100:802/Home'
+            post_logout_redirect_uri: 'http://localhost:7762/Home'
         };
 
         var mgr = new Oidc.UserManager(config);

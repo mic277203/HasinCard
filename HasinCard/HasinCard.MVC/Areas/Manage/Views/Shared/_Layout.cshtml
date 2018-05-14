@@ -20,7 +20,7 @@
     <![endif]-->
 </head>
 <body>
-    <nav class="navbar navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -47,7 +47,6 @@
             </div>
             <div class="col-lg-10">
                 @RenderBody()
-
             </div>
         </div>
     </div>
@@ -61,27 +60,17 @@
     <script src="~/js/layer/layer.js"></script>
     <script type="text/javascript">
         var config = {
-            authority: "http://149.28.31.100:800",
+            authority: "http://localhost:5680",
             client_id: "js",
-            redirect_uri: 'http://149.28.31.100:802/SignCallBack',
+            redirect_uri: 'http://localhost:7762/SignCallBack',
             response_type: "id_token token",
             scope: "openid profile apihost",
-            post_logout_redirect_uri: 'http://149.28.31.100:802/Home'
+            post_logout_redirect_uri: 'http://localhost:7762/Home'
         };
         var mgr = new Oidc.UserManager(config);
     </script>
     <script type="text/javascript">
-        $(".alogout").on("click", function () {
-
-            layer.confirm('是否确认退出？', {
-                btn: ['确定', '取消'],
-                icon: 3
-            }, function () {
-                window.localStorage.clear();
-                mgr.signoutRedirect();
-            }, function () {
-            });
-        });
+   
 
         $(function () {
 
@@ -93,7 +82,7 @@
 
                     $.ajax({
                         type: "GET",
-                        url: "http://149.28.31.100:801/api/SysUser/" + user.profile.sub,
+                        url: "http://localhost:11415/api/SysUser/" + user.profile.sub,
                         beforeSend: function (request) {
                             request.setRequestHeader("Authorization", "Bearer " + user.access_token);
                         },
@@ -121,7 +110,6 @@
             }
 
             $(".spName").text(storage["name"]);
-
 
             var tree = [
                 {
@@ -226,6 +214,18 @@
 
             $('#tree').treeview({ data: tree, collapseIcon: '', color: "black", selectedBackColor: "#3c763d", selectedColor: "white" });
 
+            $(".alogout").on("click", function () {
+
+                layer.confirm('是否确认退出？', {
+                    btn: ['确定', '取消'],
+                    icon: 3
+                }, function () {
+                    window.localStorage.clear();
+                    mgr.signoutRedirect();
+                }, function () {
+                });
+            });
+        });
     </script>
     @RenderSection("Scripts", required: false)
 </body>
