@@ -6,9 +6,9 @@
 <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
 <script type="text/javascript">
     new Oidc.UserManager().signinRedirectCallback().then(function () {
-        window.location = '@Url.Action("index","Home")';
+        window.location = '@Url.Action("index","Home",new { area="Manage"})';
     }).catch(function (e) {
-        console.error(e);
+        window.location = '@Url.Action("index","Home")';
     });
 </script>
 

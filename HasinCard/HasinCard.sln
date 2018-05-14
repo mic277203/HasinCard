@@ -23,25 +23,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HasinCard.Identity.API", "H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HasinCard.MVC", "HasinCard.MVC\HasinCard.MVC.csproj", "{75E6C81F-D549-4690-BC17-9212B79F1993}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI", "..\..\UI\", "{4B3EC381-978E-4023-9D35-2B9888561CE5}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI", "..\UI\", "{4B3EC381-978E-4023-9D35-2B9888561CE5}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_56657"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\UI\"
+		Debug.AspNetCompiler.PhysicalPath = "..\UI\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56657\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_56657"
-		Release.AspNetCompiler.PhysicalPath = "..\..\UI\"
+		Release.AspNetCompiler.PhysicalPath = "..\UI\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56657\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56657"
-		SlnRelativePath = "..\..\UI\"
+		SlnRelativePath = "..\UI\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HasinCard.Service.Test", "HasinCard.Service.Test\HasinCard.Service.Test.csproj", "{6A6F84DE-7BB1-4CD3-BB7F-BB6A037DB945}"

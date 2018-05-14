@@ -54,20 +54,29 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
     <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
+    <script src="~/js/layer/layer.js"></script>
     <script type="text/javascript">
         var config = {
-            authority: "http://www.hasin.top",
+            authority: "http://149.28.31.100:800",
             client_id: "js",
-            redirect_uri: 'http://localhost:7762/SignCallBack',
+            redirect_uri: 'http://149.28.31.100:802/SignCallBack',
             response_type: "id_token token",
             scope: "openid profile apihost",
-            post_logout_redirect_uri: 'http://localhost:7762/Home'
+            post_logout_redirect_uri: 'http://149.28.31.100:802/Home'
         };
         var mgr = new Oidc.UserManager(config);
     </script>
     <script type="text/javascript">
         $(".alogout").on("click", function () {
-            mgr.signoutRedirect();
+
+            layer.confirm('是否确认退出？', {
+                btn: ['确定', '取消'],
+                icon: 3
+            }, function () {
+                window.localStorage.clear();
+                mgr.signoutRedirect();
+            }, function () {
+            });
         });
 
         $(function () {
@@ -80,45 +89,54 @@
 
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost:11415/api/SysUser/" + user.profile.sub,
+                        url: "http://149.28.31.100:801/api/SysUser/" + user.profile.sub,
                         beforeSend: function (request) {
                             request.setRequestHeader("Authorization", "Bearer " + user.access_token);
                         },
                         success: function (result) {
                             if (result) {
-                                storage["id"] = result.data.id;
-                                storage["email"] = result.data.email;
-                                storage["name"] = result.data.name;
-                            }
-                        }
+                                if (result.isSuccess) {
+                                    storage["id"] = result.data.id;
+                                    storage["email"] = result.data.email;
+                                    storage["name"] = result.data.name;
+                                    $(".spName").text(storage["name"]);
+                                }
+                                else {
+                                    layer.alert('非法请求', { title: "提示", icon: 2,
+                                        success: function (layero, index) {
+                                            mgr.signinRedirect();
+                                        }});
+                                   }
+                                }
+        }
+                        });
+
                     });
-
-                });
-            }
-
-            $(".spName").text(storage["name"]);
-
-
-            var tree = [
-                {
-                    text: "Parent 1"
-                },
-                {
-                    text: "Parent 2"
-                },
-                {
-                    text: "Parent 3"
-                },
-                {
-                    text: "Parent 4"
-                },
-                {
-                    text: "Parent 5"
                 }
-            ];
 
-            $('#tree').treeview({ data: tree});
-        });
+        $(".spName").text(storage["name"]);
+
+
+        var tree = [
+            {
+                text: "Parent 1"
+            },
+            {
+                text: "Parent 2"
+            },
+            {
+                text: "Parent 3"
+            },
+            {
+                text: "Parent 4"
+            },
+            {
+                text: "Parent 5"
+            }
+        ];
+
+        $('#tree').treeview({ data: tree });
+            });
 
     </script>
     @RenderSection("Scripts", required: false)

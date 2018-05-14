@@ -28,6 +28,13 @@ namespace HasinCard.Host.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            var sub = User.Claims.FirstOrDefault(p => p.Type == "sub").Value;
+
+            if (sub != id.ToString())
+            {
+                return Json(ApiJsonResult.ErrorResult("非法请求"));
+            }
+
             var result = _sysUserService.GetById(id);
 
             if (result == null)

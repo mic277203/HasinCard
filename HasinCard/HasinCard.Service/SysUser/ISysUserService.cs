@@ -29,5 +29,9 @@ namespace HasinCard.Service.SysUser
         /// <param name="email"></param>
         /// <returns></returns>
         bool ExistEmail(string email);
+
+        bool ValidateCredentials(string username, string password);
+        SysUsers FindBySubjectId(string subjectId);
+        SysUsers FindByUsername(string username);
     }
 }

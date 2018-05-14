@@ -30,7 +30,7 @@
                     <li class="page-scroll"><a class="scroll" href="#services">我们</a></li>
                     <li class="page-scroll"><a class="scroll" href="#contact">联系</a></li>
                     <li><a href="#" style="color: #4bd0b7"><b><i class="fa fa-search"></i> 查询订单</b></a></li>
-                    <li class="page-scroll"><a class="scroll">登录</a></li>
+                    <li class="page-scroll"><a class="scroll aLogin" href="#">登录</a></li>
                     <li class="page-scroll"><a class="scroll reg_btn" href="@Url.Action("Index","Register")">注册</a></li>
                 </ul>
                 <a id="pull"><img src="~/images/nav-icon.png" title="menu"></a>
@@ -104,9 +104,24 @@
     <script src="~/js/easing.js" type="text/javascript"></script>
     <script src="~/js/jquery.flexisel.js"></script>
     <script src="~/js/responsiveslides.min.js"></script>
+    <script src="~/js/layer/layer.js"></script>
+    <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
     <script type="text/javascript">
 
+        var config = {
+            authority: "http://149.28.31.100:800",
+            client_id: "js",
+            redirect_uri: 'http://149.28.31.100:802/SignCallBack',
+            response_type: "id_token token",
+            scope: "openid profile apihost",
+            post_logout_redirect_uri: 'http://149.28.31.100:802/Home'
+        };
+
+        var mgr = new Oidc.UserManager(config);
+
         $(function () {
+
+         
             $().UItoTop({ easingType: 'easeOutQuart' });
 
             $("#slider3").responsiveSlides({
@@ -116,10 +131,16 @@
             var pull = $('#pull');
             menu = $('nav ul');
             menuHeight = menu.height();
+
             $(pull).on('click', function (e) {
                 e.preventDefault();
                 menu.slideToggle();
             });
+
+            $(".aLogin").click(function () {
+                mgr.signinRedirect();
+            });
+
             $(window).resize(function () {
                 var w = $(window).width();
                 if (w > 320 && menu.is(':hidden')) {

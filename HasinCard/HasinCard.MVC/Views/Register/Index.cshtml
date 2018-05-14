@@ -8,15 +8,15 @@
     <div class="register">
         <h1>注册会员</h1>
         <form id="form1" method="post">
-            <p><input name="Email" type="text" placeholder="登录邮箱" required=""> 用于登录</p>
-            <p><input name="Password" type="password" placeholder="密码" required=""> 密码长度在6到20个字符之间</p>
+            <p><input name="Email" type="text" placeholder="邮箱" required=""> 用于登录</p>
+            <p><input name="Password" type="password" placeholder="密码" required=""> 密码长度在6到15个字符之间</p>
             <p><input name="PasswordComfire" type="password" placeholder="确认密码" id="password2" required=""> 确认密码</p>
             <p><input name="Name" type="text" placeholder="昵称" required=""> 用户名在5-30位</p>
-            <p><input name="QQ" type="text" placeholder="QQ" required=""> 请填写你的常用QQ号</p>
-            <p><input type="text" maxlength="11" name="TelNo" class="user" placeholder="请输入您的手机号码" required=""></p>
+            <p><input name="QQ" type="text" maxlength="11" placeholder="QQ" required=""> 请填写你的常用QQ号</p>
+            <p><input type="text" maxlength="11" name="TelNo" class="user" placeholder="手机号码" required="">请填写您的手机号码</p>
             <p><input type="button" class="btnRegister" value="注 册" /></p>
         </form>
-        <p>已有账号，<a href="#" style="color: #3195fa">登录</a></p>
+        <p>已有账号，<a href="#" style="color: #3195fa" class="aLogin">登录</a></p>
     </div>
     <img src="~/images/reg_img.png" alt="" style="float: right;margin-top: 20px">
     <div class="clear"></div>
@@ -25,23 +25,76 @@
     <script type="text/javascript">
 
         function Register() {
+
+            var email = $('input[name="Email"]').val();
+            var password = $('input[name="Password"]').val();
+            var name = $('input[name="Name"]').val();
+            var qq = $('input[name="QQ"]').val();
+            var telNo = $('input[name="TelNo"]').val();
+
+            if (!email) {
+                layer.tips('邮箱不能为空', 'input[name="Email"]', { tips: [1, 'red'] });
+                return;
+            }
+            else
+                if (!password) {
+                    layer.tips('密码不能为空', 'input[name="Password"]', { tips: [1, 'red'] });
+                    return;
+                }
+                else if (password != $('input[name="PasswordComfire"]').val()) {
+                    layer.alert('两次密码不一致', { title: "提示", icon: 2 });
+                    return;
+                }
+                else
+                    if (!name) {
+                        layer.tips('昵称不能为空', 'input[name="Name"]', { tips: [1, 'red'] });
+                        return;
+                    }
+                    else
+                        if (!qq) {
+                            layer.tips('QQ不能为空', 'input[name="QQ"]', { tips: [1, 'red'] });
+                            return;
+                        }
+                        else
+                            if (!telNo) {
+                                layer.tips('手机号码不能为空', 'input[name="TelNo"]', { tips: [1, 'red'] });
+                                return;
+                            }
+
             var data =
                 {
-                    Email: $('input[name="Email"]').val(),
-                    Password: $('input[name="Password"]').val(),
-                    Name: $('input[name="Name"]').val(),
-                    QQ: $('input[name="QQ"]').val(),
-                    TelNo: $('input[name="TelNo"]').val(),
-                }
+                    Email: email,
+                    Password: password,
+                    Name: name,
+                    QQ: qq,
+                    TelNo: telNo,
+                };
+
+            var index = layer.load(1, {
+                shade: [0.1, '#fff']
+            });
 
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                dataType:"json",
-                url: "http://localhost:11415/api/SysUser",
+                dataType: "json",
+                url: "http://149.28.31.100:801/api/SysUser",
                 data: JSON.stringify(data),
                 success: function (result) {
-                    alert(result.message);
+
+                    layer.close(index);
+                    if (result.isSuccess) {
+
+                        layer.alert('注册成功，即将跳转登录..', {
+                            title: "提示", icon: 1,
+                            success: function (layero, index) {
+                                mgr.signinRedirect();
+                            }
+                        });
+                    }
+                    else {
+                        layer.alert('注册失败:' + result.message, { title: "提示", icon: 2 });
+                    }
                 }
             });
         }
@@ -55,3 +108,4 @@
 
     </script>
 }
+

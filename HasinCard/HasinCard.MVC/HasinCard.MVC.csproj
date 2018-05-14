@@ -36,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\layer\layer.js" />
+    <None Include="wwwroot\js\layer\mobile\layer.js" />
     <None Include="wwwroot\js\node_modules\jsrsasign\lib\footer.js" />
     <None Include="wwwroot\js\node_modules\jsrsasign\lib\header.js" />
     <None Include="wwwroot\js\node_modules\jsrsasign\lib\jsrsasign.js" />

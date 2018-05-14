@@ -64,6 +64,27 @@ namespace HasinCard.Service.SysUser
             }
         }
 
+        public bool ValidateCredentials(string email, string password)
+        {
+            var user = FindByUsername(email);
 
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return EncryptionMd5Helper.EqualEncryptString(password, user.Password);
+            }
+
+        }
+        public SysUsers FindBySubjectId(string subjectId)
+        {
+            return _context.SysUsers.FirstOrDefault(p => p.Id.ToString() == subjectId);
+        }
+        public SysUsers FindByUsername(string email)
+        {
+            return _context.SysUsers.FirstOrDefault(p => p.Email == email);
+        }
     }
 }

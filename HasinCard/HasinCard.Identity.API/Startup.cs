@@ -34,9 +34,7 @@ namespace HasinCard.Identity.API
             services.AddScoped<ISysUserService, SysUserService>();
 
             // Build an intermediate service provider
-            var sp = services.BuildServiceProvider();
-            var sysUserService = sp.GetService<ISysUserService>();
-            Config config = new Config(sysUserService);
+            Config config = new Config();
 
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer()
@@ -44,7 +42,7 @@ namespace HasinCard.Identity.API
                 .AddInMemoryIdentityResources(config.GetIdentityResources())
                 .AddInMemoryApiResources(config.GetApiResources())
                 .AddInMemoryClients(config.GetClients())
-                .AddTestUsers(config.GetUsers());
+               .AddHasinUserStore();
 
             services.AddCors(options =>
             {

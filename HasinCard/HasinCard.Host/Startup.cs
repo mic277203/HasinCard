@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
+using IdentityServer4.AccessTokenValidation;
 
 namespace HasinCard.Host
 {
@@ -35,13 +37,32 @@ namespace HasinCard.Host
             services.AddScoped<ISysUserService, SysUserService>();
 
             services.AddAuthentication("Bearer")
-             .AddIdentityServerAuthentication(options =>
-             {
-                 options.Authority = "http://localhost:5680";
-                 options.RequireHttpsMetadata = false;
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "http://149.28.31.100:800";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "apihost";
+            });
 
-                 options.ApiName = "apihost";
-             });
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "Hain API", Version = "v1" });
+
+                // Handle OAuth
+                options.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "implicit",
+                    AuthorizationUrl = "http://149.28.31.100:800/connect/authorize",
+                    TokenUrl = "http://149.28.31.100:800/connect/token",
+                    Scopes = new Dictionary<string, string>()
+                    {
+                        { "apihost", "hasin api" }
+                    }
+                });
+
+                options.OperationFilter<AuthorizeCheckOperationFilter>();
+            });
 
             services.AddCors(options =>
             {
@@ -62,6 +83,15 @@ namespace HasinCard.Host
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hasin API V1");
+                c.ConfigureOAuth2("swaggerui", "", "", "Swagger UI");
+            });
 
             app.UseCors("any");
             app.UseAuthentication();

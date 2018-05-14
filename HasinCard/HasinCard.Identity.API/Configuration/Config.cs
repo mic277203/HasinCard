@@ -11,11 +11,6 @@ namespace HasinCard.Identity.API.Configuration
 {
     public class Config
     {
-        private readonly ISysUserService _iSysUserService;
-        public Config(ISysUserService sysUserService)
-        {
-            _iSysUserService = sysUserService;
-        }
         public IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
@@ -26,35 +21,28 @@ namespace HasinCard.Identity.API.Configuration
         }
 
         /// <summary>
-        /// 获取用户
-        /// </summary>
-        /// <returns></returns>
-        public List<TestUser> GetUsers()
-        {
-            var listUsers = _iSysUserService.GetList();
-            var listTestUsers = new List<TestUser>();
-
-            listUsers.ForEach(p =>
-            {
-                listTestUsers.Add(new TestUser()
-                {
-                    SubjectId = p.Id.ToString(),
-                    Username = p.Email,
-                    Password = p.Password
-                });
-            });
-
-            return listTestUsers;
-        }
-
-        /// <summary>
         /// 获取客户端
         /// </summary>
         /// <returns></returns>
-        public  IEnumerable<Client> GetClients()
+        public IEnumerable<Client> GetClients()
         {
             return new List<Client>
             {
+                new Client
+                {
+                    ClientId = "swaggerui",
+                    ClientName = "Swagger UI",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris = { "http://149.28.31.100:801/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { "http://149.28.31.100:801/swagger/" },
+
+                    AllowedScopes =
+                    {
+                       "apihost"
+                    }
+                },
                 // app client
                  new Client
                 {
@@ -80,9 +68,9 @@ namespace HasinCard.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris =           { "http://localhost:7762/SignCallBack" },
-                    PostLogoutRedirectUris = { "http://localhost:7762/Home" },
-                    AllowedCorsOrigins =     { "http://localhost:7762" },
+                    RedirectUris =           { "http://149.28.31.100:802/SignCallBack" },
+                    PostLogoutRedirectUris = { "http://149.28.31.100:802/Home" },
+                    AllowedCorsOrigins =     { "http://149.28.31.100:802" },
 
                     AllowedScopes =
                     {
@@ -98,7 +86,7 @@ namespace HasinCard.Identity.API.Configuration
         /// 定义API资源
         /// </summary>
         /// <returns></returns>
-        public  IEnumerable<ApiResource> GetApiResources()
+        public IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
             {
