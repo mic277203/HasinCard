@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
     <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
@@ -44,9 +45,12 @@
             <div class="col-lg-2" style="padding-left:0px;">
                 <div id="tree" style="margin-top:52px;"></div>
             </div>
+            <div class="col-lg-10">
+                @RenderBody()
+
+            </div>
         </div>
     </div>
-    @RenderBody()
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -102,41 +106,125 @@
                                     $(".spName").text(storage["name"]);
                                 }
                                 else {
-                                    layer.alert('非法请求', { title: "提示", icon: 2,
+                                    layer.alert('非法请求', {
+                                        title: "提示", icon: 2,
                                         success: function (layero, index) {
                                             mgr.signinRedirect();
-                                        }});
-                                   }
+                                        }
+                                    });
                                 }
-        }
-                        });
-
+                            }
+                        }
                     });
-                }
 
-        $(".spName").text(storage["name"]);
-
-
-        var tree = [
-            {
-                text: "Parent 1"
-            },
-            {
-                text: "Parent 2"
-            },
-            {
-                text: "Parent 3"
-            },
-            {
-                text: "Parent 4"
-            },
-            {
-                text: "Parent 5"
+                });
             }
-        ];
 
-        $('#tree').treeview({ data: tree });
-            });
+            $(".spName").text(storage["name"]);
+
+
+            var tree = [
+                {
+                    text: "基本信息",
+                    icon: "icon-user",
+                    backColor: "#d6e9c6",
+                    state: {
+                        disabled: false,
+                        expanded: true,
+                    },
+                    nodes: [
+                        {
+                            text: "账号概要"
+                        },
+                        {
+                            text: "用户信息"
+                        },
+                        {
+                            text: "安全设置"
+                        },
+                        {
+                            text: "结算记录"
+                        },
+                        {
+                            text: "投诉管理"
+                        },
+                        {
+                            text: "申请提现"
+                        }
+                    ]
+                },
+                {
+                    text: "商品管理",
+                    icon: "icon-book",
+                    backColor: "#d6e9c6",
+                    nodes: [
+                        {
+                            text: "添加分类"
+                        },
+                        {
+                            text: "商品列表"
+                        },
+                        {
+                            text: "添加商品"
+                        },
+                        {
+                            text: "添加卡密"
+                        },
+                        {
+                            text: "库存卡密"
+                        },
+                        {
+                            text: "最近卖出"
+                        }
+                    ]
+                },
+                {
+                    text: "交易管理",
+                    icon: "icon-money",
+                    backColor: "#d6e9c6",
+                    nodes: [
+                        {
+                            text: "总购链接"
+                        },
+                        {
+                            text: "付款方式"
+                        },
+                        {
+                            text: "渠道分析"
+                        },
+                        {
+                            text: "收益统计"
+                        },
+                        {
+                            text: "订单交易"
+                        }
+                    ]
+                },
+                {
+                    text: "商家助手",
+                    icon: "icon-legal",
+                    backColor: "#d6e9c6",
+                    nodes: [
+                        {
+                            text: "加优惠券"
+                        },
+                        {
+                            text: "查优惠券"
+                        },
+                        {
+                            text: "商家百科"
+                        },
+                        {
+                            text: "站内信息"
+                        },
+                        {
+                            text: "登录日志"
+                        }
+                    ]
+                }
+            ];
+
+            $('#tree').treeview({ data: tree, collapseIcon: '', color: "black", selectedBackColor: "#3c763d", selectedColor: "white" });
 
     </script>
     @RenderSection("Scripts", required: false)
