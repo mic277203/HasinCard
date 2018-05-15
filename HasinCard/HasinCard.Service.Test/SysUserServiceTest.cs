@@ -19,14 +19,7 @@ namespace HasinCard.Service.Test
 
         public SysUserServiceTest()
         {
-            var services = new ServiceCollection();
-            services.AddDbContext<HasinCardDbContext>(options => options.UseMySql("Server=149.28.31.100;user=root;password=root;Database=hasincard"));
-            services.AddScoped<ISysUserService, SysUserService>();
-            services.AddAutoMapper();
-
-            var serviceProvider = services.BuildServiceProvider();
-
-            _sysUserService = serviceProvider.GetService<ISysUserService>();
+            _sysUserService = ServiceTestBase.GetInstance().GetService<ISysUserService>();
         }
 
         [Fact]

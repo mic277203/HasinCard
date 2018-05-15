@@ -11,8 +11,10 @@ namespace HasinCard.Core.AuoMapper
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<SysUsersResponseDto, SysUsers>();
+            CreateMap<SysUsersResponseDto,SysUsers>();
             CreateMap<SysUsersRequestDto,SysUsers>();
+            CreateMap<CategorysReponseDto, Categorys>();
+            CreateMap<CategorysRequestDto, Categorys>();
         }
     }
 }

@@ -26,17 +26,8 @@
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
-    <script type="text/javascript">
-        var config = {
-            authority: "http://localhost:11415",
-            client_id: "js",
-            redirect_uri:'http://localhost:7762/SignCallBack',
-            response_type: "id_token token",
-            scope: "openid profile apihost",
-            post_logout_redirect_uri: 'http://localhost:7762/Home'
-        };
-        var mgr = new Oidc.UserManager(config);
-    </script>
+    <script src="~/js/Oidc.js"></script>
+    <script src="~/js/HaisinConfig.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
