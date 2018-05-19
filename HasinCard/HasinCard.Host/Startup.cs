@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using IdentityServer4.AccessTokenValidation;
+using HasinCard.Service.Category;
 
 namespace HasinCard.Host
 {
@@ -35,6 +36,7 @@ namespace HasinCard.Host
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddDbContext<HasinCardDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default")));
             services.AddScoped<ISysUserService, SysUserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddAuthentication("Bearer")
             .AddIdentityServerAuthentication(options =>

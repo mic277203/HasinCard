@@ -3,10 +3,18 @@
     ViewData["Title"] = "CallBack";
     Layout = null;
 }
+<p>正在跳转，请稍后.....</p>
 <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
+<script src="~/js/Oidc.js"></script>
 <script type="text/javascript">
     new Oidc.UserManager().signinRedirectCallback().then(function () {
-        window.location = '@Url.Action("index","Home",new { area="Manage"})';
+        mgr.getUser().then(function (user) {
+            if (user) {
+                window.localStorage["token"] = user.access_token;
+                window.localStorage["sub"] = user.profile.sub;
+            }
+            window.location = '@Url.Action("index","Home",new { area="Manage"})';
+        })
     }).catch(function (e) {
         window.location = '@Url.Action("index","Home")';
     });

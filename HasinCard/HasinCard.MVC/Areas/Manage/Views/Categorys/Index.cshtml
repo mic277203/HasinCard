@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "类别管理";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+<div style="padding-top:10px;padding-bottom:10px;">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label class="txtCategoryName">类别名称</label>
+            <input type="text" id="txtCategoryName" name="category" class="form-control" />
+            <a class="btn btn-danger" href="#">
+                <i class="icon-search"></i> 查询
+            </a>
+            <a class="btn btn-success" href="#">
+                <i class="icon-plus"></i> 添加类别
+            </a>
+        </div>
+    </form>
+</div>
+<table id="tbMain" class="table" style="width:100%">
+    <thead>
+        <tr>
+            <th>类别名称</th>
+            <th>排序</th>
+            <th>创建时间</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            $('#tbMain').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": app.ApiHost + "api/Categorys",
+                    "type": "get",
+                    "contentType": "application/json",
+                    "dataType": "json",
+                    "beforeSend": function (request) {
+                        request.setRequestHeader("Authorization", "Bearer " + window.localStorage["token"]);
+                    },
+                    "data": function (d) {
+                        return "start=" + d.start + "&length=" + d.length;
+                    }
+                },
+                "columns": [
+                    { "data": "categoryName" },
+                    { "data": "sortNo" },
+                    { "data": "creationTime" }
+                ]
+            });
+
+        });
+    </script>
+}

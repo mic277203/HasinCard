@@ -11,6 +11,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/datatables.min.css" />
 
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
     <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
@@ -46,7 +47,9 @@
                 <div id="tree" style="margin-top:52px;"></div>
             </div>
             <div class="col-lg-10">
-                @RenderBody()
+                <div style="margin-top:52px;">
+                    @RenderBody()
+                </div>
             </div>
         </div>
     </div>
@@ -55,57 +58,43 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/datatables.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
     <script src="~/js/node_modules/oidc-client/dist/oidc-client.min.js"></script>
     <script src="~/js/layer/layer.js"></script>
-    <script type="text/javascript">
-        var config = {
-            authority: "http://localhost:5680",
-            client_id: "js",
-            redirect_uri: 'http://localhost:7762/SignCallBack',
-            response_type: "id_token token",
-            scope: "openid profile apihost",
-            post_logout_redirect_uri: 'http://localhost:7762/Home'
-        };
-        var mgr = new Oidc.UserManager(config);
-    </script>
-    <script type="text/javascript">
-   
+    <script src="~/js/Oidc.js"></script>
+    <script src="~/js/HaisinConfig.js"></script>
 
+    <script type="text/javascript">
         $(function () {
 
             var storage = window.localStorage;
 
             if (!storage["name"]) {
-
-                mgr.getUser().then(function (user) {
-
-                    $.ajax({
-                        type: "GET",
-                        url: "http://localhost:11415/api/SysUser/" + user.profile.sub,
-                        beforeSend: function (request) {
-                            request.setRequestHeader("Authorization", "Bearer " + user.access_token);
-                        },
-                        success: function (result) {
-                            if (result) {
-                                if (result.isSuccess) {
-                                    storage["id"] = result.data.id;
-                                    storage["email"] = result.data.email;
-                                    storage["name"] = result.data.name;
-                                    $(".spName").text(storage["name"]);
-                                }
-                                else {
-                                    layer.alert('非法请求', {
-                                        title: "提示", icon: 2,
-                                        success: function (layero, index) {
-                                            mgr.signinRedirect();
-                                        }
-                                    });
-                                }
+                $.ajax({
+                    type: "GET",
+                    url: app.ApiHost + "api/SysUser/" + storage["sub"],
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", "Bearer " + storage["token"]);
+                    },
+                    success: function (result) {
+                        if (result) {
+                            if (result.isSuccess) {
+                                storage["id"] = result.data.id;
+                                storage["email"] = result.data.email;
+                                storage["name"] = result.data.name;
+                                $(".spName").text(storage["name"]);
+                            }
+                            else {
+                                layer.alert('非法请求', {
+                                    title: "提示", icon: 2,
+                                    success: function (layero, index) {
+                                        mgr.signinRedirect();
+                                    }
+                                });
                             }
                         }
-                    });
-
+                    }
                 });
             }
 

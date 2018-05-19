@@ -6,11 +6,19 @@ using System.Text;
 using Xunit;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using Xunit.Abstractions;
 
 namespace HasinCard.Core.Test
 {
     public class AppConfigurationsTest
     {
+        private readonly ITestOutputHelper _output;
+
+        public AppConfigurationsTest(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         [Fact]
         public void Test()
         {
