@@ -8,8 +8,8 @@ namespace HasinCard.Service.Category
 {
     public interface ICategoryService
     {
-        Task<bool> CreateAsync(CategorysRequestDto dto);
-        Task<bool> DeleteAsync(int Id);
-        Task<bool> EditAsync(int Id);
+        //Task<bool> CreateAsync(CategorysRequestDto dto);
+        //Task<bool> DeleteAsync(int Id);
+        //Task<bool> EditAsync(int Id);
     }
 }
