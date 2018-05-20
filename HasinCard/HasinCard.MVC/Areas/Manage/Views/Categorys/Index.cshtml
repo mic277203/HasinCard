@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="txtCategoryName">类别名称</label>
             <input type="text" id="txtCategoryName" name="category" class="form-control" />
-            <a class="btn btn-danger" href="#">
+            <a class="btn btn-danger" href="javascript:Query();">
                 <i class="icon-search"></i> 查询
             </a>
             <a class="btn btn-success" href="#">
@@ -27,13 +27,28 @@
 </table>
 
 @section Scripts{
-    <script type="text/javascript">
-        $(function () {
+<script type="text/javascript">
+    var table;
 
-            $('#tbMain').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
+    $(function () {
+
+        table = $('#tbMain').DataTable({
+            "searching": false,
+            "processing": true,
+            "serverSide": true,
+            "ordering": false,
+            "destroy": true,
+            "language": {
+                url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json'
+            },
+            "ajax": function (data, callback, settings) {
+
+                var requestData = {};
+                requestData.categoryName = $("#txtCategoryName").val();
+                requestData.start = data.start;
+                requestData.length = data.length;
+
+                $.ajax({
                     "url": app.ApiHost + "api/Categorys",
                     "type": "get",
                     "contentType": "application/json",
@@ -41,17 +56,24 @@
                     "beforeSend": function (request) {
                         request.setRequestHeader("Authorization", "Bearer " + window.localStorage["token"]);
                     },
-                    "data": function (d) {
-                        return "start=" + d.start + "&length=" + d.length;
+                    "data": requestData,
+                    "success": function (json) {
+                        json.draw = settings.draw;
+                        callback(json);
                     }
-                },
-                "columns": [
-                    { "data": "categoryName" },
-                    { "data": "sortNo" },
-                    { "data": "creationTime" }
-                ]
-            });
-
+                })
+            },
+            "columns": [
+                { "data": "categoryName" },
+                { "data": "sortNo" },
+                { "data": "creationTime" }
+            ]
         });
-    </script>
+
+    });
+
+    function Query() {
+        table.draw(false);
+    }
+</script>
 }
