@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "添加类别";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+<form>
+    <div class="form-group">
+        <label for="txtCategoryName">类别名称</label>
+        <input type="text" class="form-control" id="txtCategoryName" placeholder="类别名称">
+    </div>
+    <button type="button" class="btn btn-success">提交</button>
+</form>
+
+@section Script{
+    <script type="text/javascript">
+
+        var successFunc = function (result) {
+
+            if (result) {
+                if (result.isSuccess) {
+                    storage["id"] = result.data.id;
+                    storage["email"] = result.data.email;
+                    storage["name"] = result.data.name;
+                    $(".spName").text(storage["name"]);
+                }
+                else {
+                    layer.alert('非法请求', {
+                        title: "提示", icon: 2,
+                        success: function (layero, index) {
+                            mgr.signinRedirect();
+                        }
+                    });
+                }
+            }
+        }
+
+        $.fn.SKAjax("get", "api/SysUser/" + storage["sub"], "", successFunc);
+
+    </script>
+}

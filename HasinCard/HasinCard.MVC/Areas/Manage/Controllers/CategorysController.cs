@@ -13,5 +13,10 @@ namespace HasinCard.MVC.Areas.Manage.Controllers
         {
             return View();
         }
+
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
     }
 }

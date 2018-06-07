@@ -27,53 +27,39 @@
 </table>
 
 @section Scripts{
-<script type="text/javascript">
-    var table;
+    <script type="text/javascript">
+        var table;
 
-    $(function () {
+        $(function () {
 
-        table = $('#tbMain').DataTable({
-            "searching": false,
-            "processing": true,
-            "serverSide": true,
-            "ordering": false,
-            "destroy": true,
-            "language": {
-                url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json'
-            },
-            "ajax": function (data, callback, settings) {
+            var initParam = function () {
 
-                var requestData = {};
-                requestData.categoryName = $("#txtCategoryName").val();
-                requestData.start = data.start;
-                requestData.length = data.length;
+                var data = {
+                    categoryName: $("#txtCategoryName").val()
+                };
 
-                $.ajax({
-                    "url": app.ApiHost + "api/Categorys",
-                    "type": "get",
-                    "contentType": "application/json",
-                    "dataType": "json",
-                    "beforeSend": function (request) {
-                        request.setRequestHeader("Authorization", "Bearer " + window.localStorage["token"]);
-                    },
-                    "data": requestData,
-                    "success": function (json) {
-                        json.draw = settings.draw;
-                        callback(json);
-                    }
-                })
-            },
-            "columns": [
+                return data;
+            };
+
+            var initResult = function () {
+                var data = {};
+
+                return data;
+            };
+
+            var cols = [
                 { "data": "categoryName" },
                 { "data": "sortNo" },
                 { "data": "creationTime" }
-            ]
+            ];
+
+            table = $('#tbMain').SKDataTable("get", "api/Categorys", initParam, initResult, cols);
+
         });
 
-    });
+        function Query() {
+            table.draw(false);
+        }
 
-    function Query() {
-        table.draw(false);
-    }
-</script>
+    </script>
 }
